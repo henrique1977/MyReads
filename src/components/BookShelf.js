@@ -1,19 +1,13 @@
 import React from 'react';
-import Book from './Book';
+import BooksGrid from './BooksGrid';
 
-const BookShelf = ({title, books}) => {
+const BookShelf = ({title, books, onMove, shelfString}) => {
 
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">{title}</h2>
       <div className="bookshelf-books">
-        <ol className="books-grid">
-          { books.map((book, index) => {
-            return (
-              <Book book={book} key={index} />
-            )
-          }) }
-        </ol>
+        <BooksGrid books={books} onMove={onMove} shelfString={shelfString} />
       </div>
     </div>
   );

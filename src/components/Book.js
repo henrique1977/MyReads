@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Book = ({book}) => {
+const Book = ({book, shelf, shelfString, onMove}) => {
 
   const thumbnail = (book.imageLinks) ? book.imageLinks.thumbnail : '';
   const backgroundImageLink = 'url(' + thumbnail + ')';
@@ -12,12 +12,18 @@ const Book = ({book}) => {
     });
   }
 
+  const handleMoveShelf = (event) => {
+    console.log('clicked');
+    console.log(event.target.value);
+    onMove(book, event.target.value);
+  };
+
   return (
     <div className="book">
       <div className="book-top">
         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: backgroundImageLink }}></div>
           <div className="book-shelf-changer">
-            <select>
+            <select value={book.shelf} onChange={handleMoveShelf}>
               <option value="none" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
