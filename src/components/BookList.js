@@ -11,9 +11,9 @@ const BookList = ({books, onMove}) => {
       </div>
       <div className="list-books-content">
         <div>
-          <BookShelf books={books.filter((book) => (book.shelf === 'currentlyReading'))} title="Currently Reading" onMove={onMove} shelfString="currentlyReading" />
-          <BookShelf books={books.filter((book) => (book.shelf === 'wantToRead'))} title="Want to Read" onMove={onMove}  shelfString="wantToRead" />
-          <BookShelf books={books.filter((book) => (book.shelf === 'read'))} title="Read" onMove={onMove}  shelfString="read" />
+          <BookShelf books={books.filter((book) => (book.shelf === 'currentlyReading'))} title="Currently Reading" onMove={onMove}  />
+          <BookShelf books={books.filter((book) => (book.shelf === 'wantToRead'))} title="Want to Read" onMove={onMove}  />
+          <BookShelf books={books.filter((book) => (book.shelf === 'read'))} title="Read" onMove={onMove}  />
         </div>
       </div>
       <div className="open-search">

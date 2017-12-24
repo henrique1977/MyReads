@@ -7,7 +7,7 @@ const BookShelf = ({title, books, onMove, shelfString}) => {
     <div className="bookshelf">
       <h2 className="bookshelf-title">{title}</h2>
       <div className="bookshelf-books">
-        <BooksGrid books={books} onMove={onMove} shelfString={shelfString} />
+        <BooksGrid books={books} onMove={onMove} />
       </div>
     </div>
   );

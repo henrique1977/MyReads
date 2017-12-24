@@ -9,6 +9,7 @@ class Search extends Component {
     super(props);
 
     this.searchBooks = this.searchBooks.bind(this);
+    this.updateShelf = this.updateShelf.bind(this);
 
     this.state = {
       searchResults: [],
@@ -22,7 +23,7 @@ class Search extends Component {
 
       if (books) {
         const bks = books.map((book) => {
-          let shelf = 'None';
+          let shelf = 'none';
           const myBook = myBooks.find((bk) => bk.id === book.id);
           if (myBook) {
             shelf = myBook.shelf;
@@ -36,6 +37,11 @@ class Search extends Component {
       }
 
     });
+  }
+
+  updateShelf(book, shelf) {
+    book.shelf = shelf;
+    this.props.onMove(book, shelf);
   }
 
   updateSearch(searchTerm) {
@@ -59,7 +65,7 @@ class Search extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <BooksGrid books={this.state.searchResults} onMove={this.props.onMove} shelfString={this.props.shelfString} />
+          <BooksGrid books={this.state.searchResults} onMove={this.updateShelf} />
         </div>
       </div>
     );

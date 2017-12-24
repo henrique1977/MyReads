@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Book = ({book, shelf, shelfString, onMove}) => {
+const Book = ({book, onMove}) => {
 
   const thumbnail = (book.imageLinks) ? book.imageLinks.thumbnail : '';
   const backgroundImageLink = 'url(' + thumbnail + ')';
@@ -22,7 +22,7 @@ const Book = ({book, shelf, shelfString, onMove}) => {
         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: backgroundImageLink }}></div>
           <div className="book-shelf-changer">
             <select value={book.shelf} onChange={handleMoveShelf}>
-              <option value="none" disabled>Move to...</option>
+              <option value="" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
               <option value="read">Read</option>
