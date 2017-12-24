@@ -18,24 +18,25 @@ class Search extends Component {
   }
 
   searchBooks(term) {
-    BooksAPI.search(this.state.searchTerm).then((books) => {
+    BooksAPI.search(term).then((searchResult) => {
       const myBooks = this.props.books;
 
-      if (books) {
-        const bks = books.map((book) => {
-          let shelf = 'none';
-          const myBook = myBooks.find((bk) => bk.id === book.id);
-          if (myBook) {
-            shelf = myBook.shelf;
-          }
-          return ({...book, shelf: shelf});
-        });
-          this.setState({ searchResults: bks });
-      }
-      else {
+      if ((!searchResult) || searchResult.error) {
+        // no books found, update state
         this.setState({ searchResults: [] });
+        return;
       }
 
+      const books = searchResult.map((book) => {
+        let shelf = 'none';
+        const myBook = myBooks.find((bk) => bk.id === book.id);
+        if (myBook) {
+          shelf = myBook.shelf;
+        }
+        return ({...book, shelf: shelf});
+      });
+
+      this.setState({ searchResults: books });
     });
   }
 
@@ -45,7 +46,7 @@ class Search extends Component {
   }
 
   updateSearch(searchTerm) {
-    this.setState({ searchTerm: searchTerm.trim() });
+    this.setState({ searchTerm: searchTerm });
     this.searchBooks(searchTerm);
   }
 
