@@ -8,9 +8,6 @@ class Search extends Component {
   constructor(props) {
     super(props);
 
-    // // this is necessary to make sure this still works in the right context for the methods below
-    // this.getBookList = this.getBookList.bind(this);
-    // this.moveToDifferentBookShelf = this.moveToDifferentBookShelf.bind(this);
     this.searchBooks = this.searchBooks.bind(this);
 
     this.state = {
@@ -19,15 +16,8 @@ class Search extends Component {
     };
   }
 
-  componentDidMount() {
-    console.log('Search did mount');
-    console.log(this.props.books);
-  }
-
   searchBooks(term) {
     BooksAPI.search(this.state.searchTerm).then((books) => {
-      console.log('promise finished.');
-      console.log(books);
       const myBooks = this.props.books;
 
       if (books) {
@@ -49,7 +39,6 @@ class Search extends Component {
   }
 
   updateSearch(searchTerm) {
-    console.log('searched: ' + searchTerm);
     this.setState({ searchTerm: searchTerm.trim() });
     this.searchBooks(searchTerm);
   }

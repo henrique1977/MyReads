@@ -13,8 +13,6 @@ const Book = ({book, shelf, shelfString, onMove}) => {
   }
 
   const handleMoveShelf = (event) => {
-    console.log('clicked');
-    console.log(event.target.value);
     onMove(book, event.target.value);
   };
 
